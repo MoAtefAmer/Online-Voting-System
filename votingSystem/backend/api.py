@@ -11,20 +11,10 @@ class PollsViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields = ['status']
     search_fields = ['title','description','choices__choice_text']
-    permission_classes=[
-        permissions.AllowAny
-    ]
+  
     
-# class InProgressPollsViewSet(viewsets.ModelViewSet):
-#     queryset = Polls.objects.filter(status='InProgress')
-#     serializer_class = PollSerializer
-    
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [permissions.AllowAny()]
+        return [permissions.IsAdminUser()]
 
-    
-
-#     def get_permissions(self):
-#         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-#             permission_classes = [permissions.IsAdminUser]
-#         else:
-#             permission_classes = [permissions.AllowAny]
-#         return [permission() for permission in permission_classes]
