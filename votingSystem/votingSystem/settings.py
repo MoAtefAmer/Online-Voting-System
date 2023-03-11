@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'backend',
     'django_filters',
     'django_crontab',
+    'django_otp',
+    'django_otp.plugins.otp_email',
  
     
 ]
@@ -60,6 +62,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+from decouple import config
+
+import os
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 ROOT_URLCONF = 'votingSystem.urls'
 
@@ -146,6 +158,7 @@ CRONJOBS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEFAULT_FROM_EMAIL = 'druidoftheclaw420@gmail.com'
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,

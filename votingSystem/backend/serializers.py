@@ -14,3 +14,10 @@ class PollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Polls
         fields = '__all__'
+
+
+class VoteSerializer(serializers.Serializer):
+    poll_id = serializers.IntegerField()
+    choice_id = serializers.IntegerField()
+    email = serializers.EmailField()
+    # otp = serializers.CharField(max_length=6)

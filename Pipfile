@@ -9,6 +9,10 @@ djangorestframework = "*"
 django-filter = "*"
 django-crontab = "*"
 django-cron = "*"
+django-otp = "*"
+mailgun = "*"
+requests = "*"
+python-dotenv = "*"
 
 [dev-packages]
 autopep8 = "*"
