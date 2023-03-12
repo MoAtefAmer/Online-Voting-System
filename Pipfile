@@ -13,6 +13,8 @@ django-otp = "*"
 mailgun = "*"
 requests = "*"
 python-dotenv = "*"
+uuid = "*"
+django-extensions = "*"
 
 [dev-packages]
 autopep8 = "*"

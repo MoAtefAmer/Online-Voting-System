@@ -29,7 +29,7 @@ class Polls(models.Model):
 
 
 class Choices(models.Model):
-    poll = models.ForeignKey(Polls, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Polls,related_name='choices', on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=100)
     number_of_votes = models.IntegerField(default=0)
 
@@ -43,14 +43,15 @@ class Choices(models.Model):
 class Voters(models.Model):
     email = models.EmailField(max_length=100)
     is_confirmed = models.BooleanField(default=False)
-    otp = models.CharField(max_length=300)
+    otp_timestamp = models.CharField(max_length=300,blank=True,null=True,default='s')
     choice = models.ForeignKey(Choices, on_delete=models.CASCADE)
     poll = models.ForeignKey(Polls, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.email
 
-
+# a signal that checks upon creating of the vote if the end_date has already passed or not
 @receiver(post_save, sender=Polls)
 def update_poll_status(sender, instance, **kwargs):
     if instance.end_date <= timezone.now() and instance.status == 'inProgress':

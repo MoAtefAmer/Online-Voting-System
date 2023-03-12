@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_crontab',
     'django_otp',
-    'django_otp.plugins.otp_email',
+    'django_otp.plugins.otp_totp',
  
     
 ]
@@ -61,11 +61,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 from decouple import config
 
-import os
+
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)

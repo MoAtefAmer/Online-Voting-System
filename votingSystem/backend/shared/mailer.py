@@ -9,9 +9,9 @@ EMAIL_SENDER = config('EMAIL_SENDER')
 
 
 
-def send_email(email, poll, choice):
-    subject = f'Confirmation for your vote on poll "{poll.title}"'
-    message = f'Thank you for voting on poll "{poll.title}". Your vote for choice "{choice.choice_text}" has been recorded.'
+def send_email(email:str, poll:object, choice:object,otp:int)->bool:
+    subject = f'OTP "{poll.title}"'
+    message = f'Thank you for voting on poll "{poll.title}". Your vote for choice "{choice.choice_text}" has been recorded. Please use this otp to confirm your vote "{otp}"'
     from_email = EMAIL_SENDER
     recipient_list = [email]
    
