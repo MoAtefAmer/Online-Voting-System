@@ -1,0 +1,49 @@
+import { Otpsingleinput } from "./Otpsingleinput";
+
+
+export function Otpsubmission() {
+    return (
+    
+            <div className="relative bg-gray-900 px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
+                <div className="mx-auto flex w-full max-w-md flex-col space-y-14">
+                    <div className="flex flex-col items-center justify-center text-center space-y-2">
+                        <div className="font-semibold text-xl text-gray-400">
+                            <p>Email Verification</p>
+                        </div>
+                        <div className="flex flex-row text-sm font-medium text-gray-400">
+                            <p>We have sent a code to your email ba**@dipainhouse.com</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <form >
+                            <div className="flex flex-col space-y-14">
+                                <div className="flex flex-row items-center  min justify-center mx-auto w-full max-w-sm ">
+                                   <Otpsingleinput/>
+                                   <Otpsingleinput/>
+                                   <Otpsingleinput/>
+                                   <Otpsingleinput/>
+                                   <Otpsingleinput/>
+                                   <Otpsingleinput/>
+                                   
+                                </div>
+
+                                <div className="flex flex-col space-y-5">
+                                    <div>
+                                        <button className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm">
+                                            Confirm Vote
+                                        </button>
+                                    </div>
+
+                                    <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
+                                        <p>Didn't recieve code?</p> <a className="flex flex-row items-center text-blue-600" >Resend</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+      
+    )
+}

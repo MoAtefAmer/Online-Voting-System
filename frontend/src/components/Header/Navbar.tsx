@@ -10,11 +10,15 @@ export function Navbar() {
                     <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
                         <Logo />
 
-                        <span className="ml-3 text-3xl">Pollster</span>
+                        <span className="ml-3 text-3xl">Pollster </span>
+                     
                     </a>
+                   
+                 
                 </nav>
-
+               
             </div>
+            
         </header>
     )
 }
