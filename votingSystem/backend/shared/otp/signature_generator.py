@@ -6,7 +6,7 @@ import hmac
 import uuid
 import datetime
 
-def gen_signature(voters_row_id:int,email:str,otp_timestamp:str)->bytes:
+def gen_signature(voters_row_id:int,email:str,otp_timestamp:int)->bytes:
     
     
     

@@ -43,7 +43,7 @@ class Choices(models.Model):
 class Voters(models.Model):
     email = models.EmailField(max_length=100)
     is_confirmed = models.BooleanField(default=False)
-    otp_timestamp = models.CharField(max_length=300,blank=True,null=True,default='s')
+    otp_timestamp = models.IntegerField(blank=True,null=True)
     choice = models.ForeignKey(Choices, on_delete=models.CASCADE)
     poll = models.ForeignKey(Polls, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -5,7 +5,7 @@ from .signature_generator import gen_signature
 
 
 
-def generate_otp(email:str, voters_row_id:int, otp_timestamp:str)->int:
+def generate_otp(email:str, voters_row_id:int, otp_timestamp:int)->int:
     step = int(config('STEP'))
     
     
