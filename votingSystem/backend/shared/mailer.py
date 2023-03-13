@@ -1,4 +1,4 @@
-import os
+
 import requests
 from django.core.mail import send_mail
 from decouple import config

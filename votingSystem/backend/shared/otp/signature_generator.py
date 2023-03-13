@@ -3,8 +3,7 @@ from decouple import config
 import base64
 import hashlib
 import hmac
-import uuid
-import datetime
+
 
 def gen_signature(voters_row_id:int,email:str,otp_timestamp:int)->bytes:
     

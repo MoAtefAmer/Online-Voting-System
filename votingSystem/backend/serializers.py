@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from backend.models import Polls, Choices
-from datetime import datetime
+
 
 
 # Choice Serializer

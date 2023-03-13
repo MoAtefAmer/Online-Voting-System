@@ -1,6 +1,6 @@
 from django_otp.oath import TOTP
 from decouple import config
-from django.utils import timezone
+
 from .signature_generator import gen_signature 
 
 
