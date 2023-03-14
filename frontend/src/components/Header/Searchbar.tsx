@@ -1,7 +1,7 @@
 import { useForm, } from 'react-hook-form';
 import { Searchicon } from './Searchicon';
 
-import { useEffect, useRef } from 'react';
+
 
 interface SearchbarProps {
   handleSearch: (query: string) => void;

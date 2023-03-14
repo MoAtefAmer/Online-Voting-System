@@ -3,7 +3,7 @@ import { Choicecard } from './Choicecard';
 import { ChoicesData, PollData } from '../../shared/Types';
 
 export function PollComponent({
-  id,
+  id:pollId,
   title,
   created_at,
   description,
@@ -26,6 +26,7 @@ export function PollComponent({
       minute: 'numeric',
     })
     .replace(',', '');
+
 
   return (
     <div className='py-8 flex border-t-2 border-gray-800 flex-wrap md:flex-nowrap'>
@@ -62,6 +63,7 @@ export function PollComponent({
             choices.map(({ id, choice_text, number_of_votes }: ChoicesData) => (
               <div key={id} className='w-1/2 md:w-1/3 lg:w-1/4 p-4'>
                 <Choicecard
+                pollId={pollId}
                   key={id}
                   choiceId={id}
                   choice_text={choice_text}

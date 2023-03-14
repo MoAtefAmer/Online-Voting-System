@@ -2,7 +2,7 @@ import { Leftnavbutton } from './Leftnavbutton';
 import { Pagenumber } from './Pagenumber';
 import { Rightnavbutton } from './Rightnavbutton';
 
-import { useQueryClient } from 'react-query';
+
 
 // function AnotherComponent() {
 
