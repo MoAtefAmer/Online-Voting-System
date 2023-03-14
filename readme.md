@@ -70,9 +70,9 @@ Voters Table
 | 2 | johndoe@gmail.com | 4 | No |  |  |  |
 
 
-##Endpoints in the backend
+## Endpoints in the backend
 
-###Get Polls (Limit, offset and search are optional i.e the query will run without them normally)
+### Get Polls (Limit, offset and search are optional i.e the query will run without them normally)
 ```
 http://localhost:8000/api/polls/?limit=10&offset=0&search=<search term>
 ```
@@ -116,7 +116,7 @@ response example
     ]
 }
 ```
-###Vote on Polls
+### Vote on Polls
 
 ```
 http://localhost:8000/api/vote_on_polls
