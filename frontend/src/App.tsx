@@ -2,9 +2,10 @@
 import { PollComponent, PollComponentMaster } from './components/Poll'
 import { Navbar } from './components/Header/Navbar'
 
-import { Searchbar } from './components/Header'
+import { useGlobalSearchStore } from './store/useGlobalSearchStore'
 
 function App() {
+
 
 
   return (
@@ -12,14 +13,11 @@ function App() {
     <div>
       <section className="text-gray-400 bg-gray-900 body-font overflow-hidden box-border mx-auto my-auto ">
         <Navbar />
-        <Searchbar />
-        {/* <Votemodal/> */}
 
-  
           <PollComponentMaster/>
           
        
- 
+         {/* <Votemodal/> */}
       </section>
       
     </div>

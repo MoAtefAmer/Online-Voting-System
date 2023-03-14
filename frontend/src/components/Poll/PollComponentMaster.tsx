@@ -1,35 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getPolls } from '../../api/getPolls';
 import { useQuery, useQueryClient } from 'react-query';
 import { PollComponent } from './PollComponent';
 import { PollData } from '../../shared/Types';
 import { Paginator } from '../Pagination';
+import { Searchbar } from '../Header';
 
+
+// Normally I wouldnt manage app data this way but im running out of time
 export function PollComponentMaster() {
+  const queryClient = useQueryClient();
 
-
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
+
+
   const {
     isLoading,
     isError,
-    error,
-    isSuccess,
+ 
     data,
-    isFetching,
-    isPreviousData,
-    refetch,
+
   } = useQuery(
-    ['polls', offset],
-    () => getPolls({ limit: limit, offset: offset }),
-    { keepPreviousData: true, staleTime: 1000*30}
+    ['polls', offset,searchQuery],
+    () => getPolls({ limit: limit, offset: offset,searchQuery:searchQuery }),
+    { keepPreviousData: true, staleTime: 1000 * 60 }
   );
+
+  const handleSearch = (query:string) => {
+    setSearchQuery(query);
+    queryClient.invalidateQueries('polls');
+    
+  };
 
   function handlePageChange(newPageNumber: number) {
     setOffset((newPageNumber - 1) * 10);
 
-    // refetch();
   }
 
   if (isLoading) {
@@ -40,8 +48,10 @@ export function PollComponentMaster() {
     return <div>error...</div>;
   }
 
+  
   return (
     <div>
+      <Searchbar handleSearch={handleSearch} />
       <div className='container px-5 py-24 mx-auto'>
         <div className='-my-8 divide-y-2 divide-gray-800'>
           {data &&
