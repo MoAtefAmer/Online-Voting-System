@@ -28,7 +28,7 @@ export async function voteOnPolls({ poll_id,email,choice_id }: voteOnPollsProps)
     return data.data;
   } catch (error:any) {
       console.log(error);
-    // throw { error: error.response.data.error };
+    throw { error: error.response.data.error };
   }
 }
 

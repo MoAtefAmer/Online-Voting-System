@@ -15,11 +15,6 @@ function App() {
         <Navbar />
         <Votemodal queryClient={queryClient} />
         <PollComponentMaster queryClient={queryClient} />
-        {/* {notification.length !== 0 && (
-          <div className='flex justify-center bottom-5 relative'>
-            <Snackbar />
-          </div>
-        )} */}
       </section>
     </div>
   );
