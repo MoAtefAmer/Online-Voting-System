@@ -15,6 +15,7 @@ requests = "*"
 python-dotenv = "*"
 uuid = "*"
 django-extensions = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 autopep8 = "*"

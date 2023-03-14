@@ -11,7 +11,7 @@ export function Votemodal() {
     const [open, setOpen] = useState(false)
 
     const onClick = () => {
-        console.log("yeah");
+  
         setOpen(!open)
     }
 

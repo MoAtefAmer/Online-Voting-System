@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,6 @@ SECRET_KEY = 'django-insecure-o_3vx8*d92mcmyyqxe%q0ukw7jlou+=yj4cid=x#@rz&997%vg
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 
 # CRON_CLASSES = [
@@ -49,8 +49,9 @@ INSTALLED_APPS = [
     'django_crontab',
     'django_otp',
     'django_otp.plugins.otp_totp',
- 
-    
+    'corsheaders',
+
+
 ]
 
 MIDDLEWARE = [
@@ -62,10 +63,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_otp.middleware.OTPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
-
-from decouple import config
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
