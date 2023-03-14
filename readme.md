@@ -35,6 +35,10 @@ Create a super user to access django admin portal
 ```
 python manage.py createsuperuser
 ```
+Make sure that you use this commands to run the cronjob responsible for checking expiry dates and changing the status automattically accordingly
+```
+python manage.py crontab add
+```
 
 Dont forget to create a .env file and add the variables as per the .env.example file
 
@@ -72,7 +76,46 @@ Voters Table
 ```
 http://localhost:8000/api/polls/?limit=10&offset=0&search=<search term>
 ```
-
+```
+response example
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 31,
+            "title": "Presidential Poll",
+            "status": "inProgress",
+            "description": "This poll is about who was/is the best president of egypt",
+            "created_at": "2023-03-13T13:02:30.708919Z",
+            "end_date": "2023-03-29T13:02:12Z",
+            "choices": [
+                {
+                    "id": 68,
+                    "choice_text": "Jimmy",
+                    "number_of_votes": 0
+                },
+                {
+                    "id": 69,
+                    "choice_text": "Mubarak",
+                    "number_of_votes": 0
+                },
+                {
+                    "id": 70,
+                    "choice_text": "Sadat",
+                    "number_of_votes": 1
+                },
+                {
+                    "id": 71,
+                    "choice_text": "You know who",
+                    "number_of_votes": 0
+                }
+            ]
+        }
+    ]
+}
+```
 ###Vote on Polls
 
 ```
@@ -83,6 +126,12 @@ body =
     "poll_id":Poll id from Polls Table,
     "choice_id":choice id from Choices table,
     "email":"recipient email"
+}
+```
+
+```
+response ={
+    "error or success":"message body"
 }
 ```
 * Sends an email to the user with the otp and doing some checks
@@ -100,7 +149,15 @@ body ={
     "choice_id":Choice id from Choices Table,
     "email":"recipeient email"
 }
+
 ```
+```
+response
+{
+    "success or error": "message body"
+}
+```
+
 * Checks if the otp is valid and confirms the vote
 
 ## To run the frontend
