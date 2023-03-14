@@ -150,9 +150,9 @@ STATIC_URL = 'static/'
 
 
 # Every 10 mins check the expiry date of polls and update the status accordingly
-CRONJOBS = [
-    ('*/1 * * * *', 'backend.tasks.update_expired_polls'),
 
+CRONJOBS = [
+    ('*/10 * * * *', 'backend.tasks.update_expired_polls', '>> backend.logfile.log')
 ]
 
 # Default primary key field type

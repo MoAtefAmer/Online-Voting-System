@@ -55,7 +55,7 @@ def vote_on_polls(request):
         
         # Check if the user still hasnt confirmed his vote and the otp still hasnt expired
         if Voters.objects.filter(email=email, poll=poll, is_confirmed=False, otp_timestamp__gt=number).exists():
-            return Response({'error': 'You cannot revote on this poll, your otp is still valid'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'errorMsg': 'You cannot revote on this poll, your otp is still valid'}, status=status.HTTP_400_BAD_REQUEST)
 
         voter = Voters.objects.filter(email=email, poll=poll, is_confirmed=False)
         if voter.exists():

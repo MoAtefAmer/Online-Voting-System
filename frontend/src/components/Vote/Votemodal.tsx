@@ -9,35 +9,35 @@ interface VotemodalProps {
 }
 
 export function Votemodal({ queryClient }: VotemodalProps) {
-  const [open, setOpen] = useState(false);
+
   const{showModal, openModal} = useStore()
-  const { setOffset, setSearchQuery } = useStore();
+
 
   const onClick = async () => {
     // setOpen(showModal);
-    setOffset(0);
-    setSearchQuery('');
+    // setOffset(0);
+    // setSearchQuery('');
     openModal(false);
 
-    // await queryClient.invalidateQueries({
+    await queryClient.invalidateQueries({
 
-    //   queryKey: ['polls'],
+      queryKey: ['polls'],
 
-    //   refetchType: 'active',
-    // });
+    
+    });
   };
 
   return (
     <>
-      <Modal show={showModal} onClose={onClick}>
+      <Modal show={showModal}  onClose={onClick}>
         <Modal.Header className='bg-gray-900 '>
           <span className='text-gray-400'> Vote Submission</span>
         </Modal.Header>
-        <Modal.Body className='bg-gray-900'>
+        <Modal.Body className='bg-gray-900 '>
           <Emailsubmission />
         </Modal.Body>
         <Modal.Footer className='bg-gray-900'>
-          <Otpsubmission />
+          <Otpsubmission queryClient={queryClient} />
         </Modal.Footer>
       </Modal>
     </>

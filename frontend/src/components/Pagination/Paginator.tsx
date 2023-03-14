@@ -43,13 +43,13 @@ export function Paginator({
     <div className='container mx-auto flex justify-center flex-wrap p-5 flex-col md:flex-row  items-center'>
       <nav aria-label='Page navigator'>
         <ul className='inline-flex  -space-x-px'>
-          {previous && <Leftnavbutton />}
+          {/* {previous && <Leftnavbutton />} */}
 
           {items.map((item, i) => (
             <Pagenumber onClick={onClick} key={i} number={i + 1} currentPage={offset && offset*10}/>
           ))}
 
-          {next && <Rightnavbutton />}
+          {/* {next && <Rightnavbutton />} */}
         </ul>
       </nav>
     </div>

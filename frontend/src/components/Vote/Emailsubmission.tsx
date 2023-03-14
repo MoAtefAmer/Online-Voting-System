@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { voteOnPolls } from '../../api/voteOnPoll';
+import { useStore } from '../../store/useStore';
+import { AxiosResponse, AxiosError } from 'axios';
 
 export function Emailsubmission() {
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const handleClick = () => {
-    setIsDisabled(true);
-    setTimeout(() => {
-      setIsDisabled(false);
-    }, 3000);
-  };
-
+  const { pollIdGlobal, choiceIdGlobal,setEmail,setConfirmOtpDisabled,setNotification } = useStore();
   const {
     register,
     handleSubmit,
@@ -22,12 +20,44 @@ export function Emailsubmission() {
     },
   });
 
+
+  const mutation = useMutation(voteOnPolls, {
+    onSuccess: (data) => {
+      // Invalidate and refetch
+      console.log(data);
+      // setNotification(data.data.response.message)
+    },
+    onError:(data)=>{
+      console.log(data);
+      // setNotification(data.data.response.message)
+    }
+  });
+
+  const handleClick = async (email:string) => {
+    setIsDisabled(true);
+    setEmail(email)
+    mutation.mutate({
+      email: email,
+      poll_id: pollIdGlobal,
+      choice_id: choiceIdGlobal,
+    });
+    
+
+
+
+   
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 10000);
+  };
+
   return (
     <section className='text-gray-400 bg-gray-900 body-font'>
       <form
-        onSubmit={handleSubmit((data) => {
+        onSubmit={handleSubmit(async(data) => {
           console.log(data);
-          handleClick();
+          setConfirmOtpDisabled(false)
+          handleClick(data.emailForm);
         })}
       >
         <div className='container px-5 py-10 mx-auto'>
@@ -53,6 +83,7 @@ export function Emailsubmission() {
                 })}
                 type='email'
                 placeholder='johndoe@example.com'
+                autoFocus
                 className='w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
               />
             </div>

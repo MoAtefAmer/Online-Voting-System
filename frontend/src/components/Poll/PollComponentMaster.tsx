@@ -24,8 +24,8 @@ export function PollComponentMaster({queryClient}:PollComponentMasterProps) {
   const {
     isLoading,
     isError,
- 
     data,
+    
 
   } =  useQuery(
     ['polls', offset,searchQuery],
@@ -50,7 +50,8 @@ export function PollComponentMaster({queryClient}:PollComponentMasterProps) {
   }
 
   if (isError) {
-    return <div>error...</div>;
+ 
+    return <div> is Error  </div>;
   }
 
   
