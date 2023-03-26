@@ -1,41 +1,32 @@
 import { Toast } from 'flowbite-react';
 import { useStore } from '../store/useStore';
 import { useEffect } from 'react';
+import { useNotificationStore } from '../store/useNotifcationStore';
 
 export function Snackbar() {
-  const { notification,setNotification } = useStore();
-  // const [isVisible, setIsVisible] = useState(false);
-  console.log(notification.length);
+  const { message, show, setShow, setMessage } = useNotificationStore();
 
-  useEffect(()=>{
 
-    setTimeout(() => {
-      setNotification('')
-  }, 3000);
+  useEffect(() => {
+    if (show) {
+      const timeout = setTimeout(() => {
+        setShow(false);
+      }, 5000); // 3 seconds
 
-  },[notification])
-
+      return () => clearTimeout(timeout);
+    }
+  }, [show, setShow]);
 
   return (
     <div
-      className={`fixed bottom-0 w-full p-4 transform transition-all duration-1000 ${
-        notification ? 'translate-y-0' : 'translate-y-full'
+      className={` bottom-0 w-1/2  fixed left-1/2 -translate-x-1/2  p-4 transform transition-all duration-1000 ${
+        show ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="bg-white rounded-lg shadow-lg p-4">
-        <p className="text-gray-800">Global state has changed!</p>
+      <div className='bg-gray-800 rounded-lg shadow-lg p-4'>
+        <p className='text-white'>{message}</p>
       </div>
     </div>
   );
-  // return (
-  //   <div
-  //     id='toast-default'
-  //     className='flex items-center w-full max-w-xl p-4  rounded-lg shadow text-gray-400 bg-gray-800'
-  //     role='alert'
-  //   >
-  //     <div className='ml-3 text-sm font-normal '>
-  //       {notification.length === 0 ? '' : notification}
-  //     </div>
-  //   </div>
-  // );
+
 }

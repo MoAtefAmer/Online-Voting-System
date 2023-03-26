@@ -1,8 +1,9 @@
 import { Modal, Button, DarkThemeToggle } from 'flowbite-react';
-import { useState } from 'react';
+
 import { Emailsubmission } from './Emailsubmission';
 import { Otpsubmission } from './Otpsubmission';
 import { useStore } from '../../store/useStore';
+
 
 interface VotemodalProps {
   queryClient: any;
@@ -11,6 +12,7 @@ interface VotemodalProps {
 export function Votemodal({ queryClient }: VotemodalProps) {
 
   const{showModal, openModal} = useStore()
+
 
 
   const onClick = async () => {

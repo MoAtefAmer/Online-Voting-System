@@ -9,8 +9,6 @@ type useStoreProps ={
   choiceIdGlobal:number,
   pollIdGlobal:number,
   confirmOtpDisabled:boolean,
-  notification:string,
-  setNotification:(notif:string) =>void;
   setConfirmOtpDisabled:(confirmOtpDisabled:boolean) =>void;
   setEmail: (query: string) => void;
   setOffset:(number:number) =>void;
@@ -29,8 +27,6 @@ export const useStore = create<useStoreProps>()(
     pollIdGlobal:0,
     choiceIdGlobal:0,
     confirmOtpDisabled:true,
-    notification:'',
-    setNotification:(notif:string) =>set({notification:notif}),
     openModal:(open:boolean)=>set({showModal:open}),
     setEmail: (query: string) => set({ email: query }),
     setOffset:(number:number) =>set({offset:number}),

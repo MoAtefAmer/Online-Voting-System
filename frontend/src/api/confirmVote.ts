@@ -30,7 +30,7 @@ export async function confirmVote({ poll_id,email,choice_id,otp }: confirmVotePr
     return data;
   } catch (error) {
       console.log(error);
-    throw { error: error?.response?.data.error };
+    throw { error: error };
   }
 }
 

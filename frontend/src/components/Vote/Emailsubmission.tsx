@@ -4,11 +4,22 @@ import { useMutation } from 'react-query';
 import { voteOnPolls } from '../../api/voteOnPoll';
 import { useStore } from '../../store/useStore';
 import { AxiosResponse, AxiosError } from 'axios';
+import { useNotificationStore } from '../../store/useNotifcationStore';
+
+
+interface ApiResponse {
+  success: string;
+  error: string;
+}
+
+
+
 
 export function Emailsubmission() {
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const { pollIdGlobal, choiceIdGlobal,setEmail,setConfirmOtpDisabled,setNotification } = useStore();
+  const { pollIdGlobal, choiceIdGlobal,setEmail,setConfirmOtpDisabled } = useStore();
+  const { message, show, setShow, setMessage } = useNotificationStore();
   const {
     register,
     handleSubmit,
@@ -20,15 +31,30 @@ export function Emailsubmission() {
     },
   });
 
+  function errorResponse(response: any): response is ApiResponse {
+    return response  && response.error !== undefined
+  }
+  function successResponse(response: any): response is ApiResponse {
+    return response  && response.success !== undefined
+  }
+  
 
   const mutation = useMutation(voteOnPolls, {
     onSuccess: (data) => {
       // Invalidate and refetch
-      console.log(data);
+      if (successResponse(data)) {
+        console.log(data);
+        setMessage(`Success! ${data.success}`);
+        setShow(true);
+      }
       // setNotification(data.data.response.message)
     },
-    onError:(data)=>{
-      console.log(data);
+    onError:(data:object)=>{
+      if (errorResponse(data)) {
+        console.log(data);
+        setMessage(`Error! ${data.error}`);
+        setShow(true);
+      }
       // setNotification(data.data.response.message)
     }
   });
